@@ -1,12 +1,36 @@
-# About Project
+# API Endpoints Documentation
 
-The alxtravelapp project is a real-world Django application that serves as the foundation for a travel listing platform. This milestone focuses on setting up the initial project structure, configuring a robust database, and integrating tools to ensure API documentation and maintainable configurations. The aim is to equip learners with industry-standard best practices for starting and managing Django-based projects efficiently.
+## Listings
+- `GET /api/listings/`: List all available travel listings
+- `POST /api/listings/`: Create new listing (requires authentication)
+- `GET /api/listings/{id}/`: Retrieve specific listing details
+- `PUT /api/listings/{id}/`: Update listing (owner only)
+- `DELETE /api/listings/{id}/`: Delete listing (owner only)
 
-This milestone will teach you to set up a scalable backend, integrate MySQL for database management, and use Swagger for automated API documentation. These foundational steps are critical in preparing the application for future features and seamless team collaboration.
+## Bookings
+- `GET /api/bookings/`: List user's bookings (requires authentication)
+- `POST /api/listings/`: Create new listing (requires authentication)
+- `GET /api/listings/{id}/`: Retrieve specific listing details
+- `PUT /api/listings/{id}/`: Update listing (owner only)
+- `DELETE /api/listings/{id}/`: Delete listing (owner only)
 
-## Requirements
-o successfully complete this milestone, ensure you meet the following prerequisites:
-	* Familiarity with Django and Django REST Framework.
-	* Knowledge of MySQL and database management.
-	* Understanding of version control using Git.
-	*  basic grasp of environment variable management using `django-environ`.
+## Testing the API
+1. **Starting development server:**
+```
+python manage.py runserver
+```
+
+2. **Access API documentation:**
+[](http://localhost:8000/swagger/)
+
+3. **Example request using curl:**
+```
+curl http://localhost:8000/api/listings/
+
+curl -X POST -H "Content-Type: application/json" -H "Authorization: Token <your-token>" -d '{
+    "title": "Beach House",
+    "description": "Oceanfront property",
+    "price_per_night": 250.00,
+    "location": "Miami, FL"
+}' http://localhost:8000/api/listings/
+```
